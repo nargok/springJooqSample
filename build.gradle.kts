@@ -18,15 +18,15 @@ repositories {
 }
 
 dependencies {
-//	implementation("org.springframework.boot:spring-boot-starter-jooq")
+	implementation("org.springframework.boot:spring-boot-starter-jooq")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.flywaydb:flyway-core")
-	implementation("org.flywaydb:flyway-mysql")
+//	implementation("org.flywaydb:flyway-core") // spring 2.7だと相性が悪いらしい
+//	implementation("org.flywaydb:flyway-mysql")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-//	runtimeOnly("com.mysql:mysql-connector-j")
+	runtimeOnly("com.mysql:mysql-connector-j")
 	jooqGenerator("mysql:mysql-connector-java")
 	jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -78,3 +78,4 @@ jooq {
 		}
 	}
 }
+
