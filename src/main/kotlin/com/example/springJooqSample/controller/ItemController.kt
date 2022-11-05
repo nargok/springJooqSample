@@ -1,5 +1,6 @@
 package com.example.springJooqSample.controller
 
+import com.example.springJooqSample.domain.model.Item
 import com.example.springJooqSample.service.ItemService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 class ItemController(private val itemService: ItemService) {
 
     @GetMapping
-    fun list() : org.jooq.Result<org.jooq.Record> {
+    fun list() : List<Item> {
         return itemService.list()
     }
 
