@@ -15,6 +15,13 @@ class ItemService(private val repository: ItemRepository) {
     fun list(): List<Item> = repository.list()
 
     @Transactional
+    fun find(id: Long): Item {
+        val item = repository.find(id)
+        checkNotNull(item) {"存在しないitem: $id"}
+        return item
+    }
+
+    @Transactional
     fun register(name: String) = repository.store(name)
 
 }
