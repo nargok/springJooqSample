@@ -9,4 +9,6 @@ interface ItemRepository {
      */
     fun list(): List<Item>
 
+    fun store(name: String)
+
 }

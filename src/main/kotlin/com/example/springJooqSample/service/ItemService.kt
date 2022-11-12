@@ -14,4 +14,7 @@ class ItemService(private val repository: ItemRepository) {
     @Transactional
     fun list(): List<Item> = repository.list()
 
+    @Transactional
+    fun register(name: String) = repository.store(name)
+
 }

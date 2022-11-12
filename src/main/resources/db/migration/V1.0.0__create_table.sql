@@ -1,4 +1,6 @@
-create table item (
-    id bigint,
-    name CHAR(255)
+create table item
+(
+    id   bigint AUTO_INCREMENT,
+    name CHAR(255),
+    index(id)
 )
