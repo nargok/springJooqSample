@@ -51,6 +51,16 @@ class ItemRepositoryImpl(private val dslContext: DSLContext) : ItemRepository {
     }
 
     /**
+     * 指定のItemを削除します
+     */
+    override fun delete(id: Long) {
+        val record = findRecord(id)
+        dslContext.delete(ITEM)
+            .where(ITEM.ID.eq(record.id))
+            .execute()
+    }
+
+    /**
      * 指定のIDのItemRecordを取得します
      */
     private fun findRecord(id: Long): ItemRecord {

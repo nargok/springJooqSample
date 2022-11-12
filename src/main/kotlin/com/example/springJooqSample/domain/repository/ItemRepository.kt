@@ -15,4 +15,5 @@ interface ItemRepository {
 
     fun update(id: Long, name: String)
 
+    fun delete(id: Long)
 }

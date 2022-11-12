@@ -32,4 +32,6 @@ class ItemService(private val repository: ItemRepository) {
         repository.update(id, name)
     }
 
+    @Transactional
+    fun delete(id: Long) = repository.delete(id)
 }

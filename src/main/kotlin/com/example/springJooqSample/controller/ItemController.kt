@@ -3,6 +3,7 @@ package com.example.springJooqSample.controller
 import com.example.springJooqSample.domain.model.Item
 import com.example.springJooqSample.service.ItemService
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -38,6 +39,8 @@ class ItemController(private val itemService: ItemService) {
         return itemService.update(request)
     }
 
+    @DeleteMapping("/{id:[0-9]+}")
+    fun delete(@PathVariable("id") id: Long) = itemService.delete(id)
 }
 
 data class CreateItemForm(
