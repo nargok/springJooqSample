@@ -25,26 +25,49 @@ class ItemRepositoryImpl(private val dslContext: DSLContext) : ItemRepository {
     /**
      * 指定のItemを取得します
      */
-    override fun find(id: Long): Item? {
-        return dslContext
+    override fun findById(id: Long): Item {
+        val record = findRecord(id)
+        return toModel(record)
+    }
+
+    /**
+     *　Itemを登録します
+     */
+    override fun store(name: String) {
+        val itemRecord = ItemRecord(name = name)
+        dslContext.insertInto(ITEM).set(itemRecord).execute()
+    }
+
+    /**
+     * 指定のItemを更新します
+     */
+    override fun update(id: Long, name: String) {
+        val record = findRecord(id)
+        record.apply { this.name = name }
+        dslContext.update(ITEM)
+            .set(record)
+            .where(ITEM.ID.eq(record.id))
+            .execute()
+    }
+
+    /**
+     * 指定のIDのItemRecordを取得します
+     */
+    private fun findRecord(id: Long): ItemRecord {
+        val record = dslContext
             .select()
             .from(ITEM)
             .where(ITEM.ID.eq(id))
             .limit(1)
             .fetch()
             .into(ItemRecord::class.java)
-            .firstOrNull()?.let { toModel(it) }
+            .firstOrNull()
 
-    }
-
-    // https://github.com/bastman/spring-kotlin-jooq/blob/master/rest-api/src/main/kotlin/com/example/api/tweeter/domain/TweeterRepo.kt
-    override fun store(name: String) {
-        val itemRecord = ItemRecord(name = name)
-        dslContext.insertInto(ITEM).set(itemRecord).execute()
+        requireNotNull(record) { "存在しないItemId: $id" }
+        return record
     }
 
     private fun toModel(record: ItemRecord): Item {
         return Item(record.id!!, record.name!!)
     }
-
 }

@@ -9,8 +9,10 @@ interface ItemRepository {
      */
     fun list(): List<Item>
 
-    fun find(id: Long): Item?
+    fun findById(id: Long): Item
 
     fun store(name: String)
+
+    fun update(id: Long, name: String)
 
 }

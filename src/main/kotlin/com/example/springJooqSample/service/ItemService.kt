@@ -1,5 +1,6 @@
 package com.example.springJooqSample.service
 
+import com.example.springJooqSample.controller.UpdateItemForm
 import com.example.springJooqSample.domain.model.Item
 import com.example.springJooqSample.domain.repository.ItemRepository
 import org.springframework.stereotype.Service
@@ -16,12 +17,19 @@ class ItemService(private val repository: ItemRepository) {
 
     @Transactional
     fun find(id: Long): Item {
-        val item = repository.find(id)
-        checkNotNull(item) {"存在しないitem: $id"}
+        val item = repository.findById(id)
+        requireNotNull(item) {"存在しないitem: $id"}
         return item
     }
 
     @Transactional
     fun register(name: String) = repository.store(name)
+
+    @Transactional
+    fun update(form: UpdateItemForm) {
+        val id = form.id
+        val name = form.name
+        repository.update(id, name)
+    }
 
 }
