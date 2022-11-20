@@ -1,4 +1,4 @@
-package com.example.springJooqSample.controller
+package com.example.springJooqSample.presentation.controller
 
 import com.example.springJooqSample.domain.model.Item
 import com.example.springJooqSample.service.ItemService

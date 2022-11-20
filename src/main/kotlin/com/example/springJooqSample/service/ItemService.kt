@@ -1,6 +1,6 @@
 package com.example.springJooqSample.service
 
-import com.example.springJooqSample.controller.UpdateItemForm
+import com.example.springJooqSample.presentation.controller.UpdateItemForm
 import com.example.springJooqSample.domain.model.Item
 import com.example.springJooqSample.domain.repository.ItemRepository
 import org.springframework.stereotype.Service
