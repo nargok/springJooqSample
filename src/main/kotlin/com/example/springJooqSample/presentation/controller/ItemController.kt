@@ -1,7 +1,7 @@
 package com.example.springJooqSample.presentation.controller
 
 import com.example.springJooqSample.domain.model.Item
-import com.example.springJooqSample.service.ItemService
+import com.example.springJooqSample.application.service.ItemService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
